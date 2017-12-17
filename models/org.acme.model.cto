@@ -1,5 +1,23 @@
 /**
  * New model file
- */
+token */
 
 namespace org.acme.model
+
+asset Post identified by postKey {
+  o String postKey  //file hashcode
+  o Double value    //the worth per post
+  o DateTime postTimestamp  //发布时间,"2017-08-07T15:04:33.790Z"
+  --> Writer owner 
+}
+
+participant Writer identified by writerKey {
+  o String writerKey  //UserID
+  o String firstName
+  o String lastName
+  o Double token  //writer's total asset 
+}
+
+transaction Subscribe {
+  --> Post post
+}
