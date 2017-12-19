@@ -1,3 +1,23 @@
 /**
  * New query file
  */
+query selectAllMembers {
+  description: "Select all Member"
+  statement:
+      SELECT org.acme.model.Member
+}
+
+query selectMemberByMemberID {
+  description:"Select a member by email"
+  statement:
+      SELECT org.acme.model.Member
+          WHERE (memberId == _$memberId)
+}
+
+query selectPostsByMemberID {
+  description:"Select all posts wroten by the member"
+  statement:
+      SELECT org.acme.model.Post
+          WHERE (owner.memberId == _$memverId)
+}
+

@@ -8,3 +8,7 @@
      resource: "org.hyperledger.composer.system.**"
      action: ALLOW
  }
+
+
+
+
