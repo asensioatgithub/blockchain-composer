@@ -5,29 +5,30 @@
 namespace org.acme.model
 
 concept Address {
-    o String country
-    o String city
-    o String county
-    o String street
-    o String house
-    o String zip
+    o String university
+    o String school
+    o String major
+    o String studentID
 }
 
 asset Post identified by postKey {
   o String postKey  //file hashcode
-  o Double value    //the worth per post
+  o Integer value    //the worth per post
   o DateTime postTimestamp  //发布时间,"2017-08-07T15:04:33.790Z"
   o String category
-  --> Member owner 
-  o String[] investor
-  o String[] authorized
+  --> User owner 
+  --> User[] forwarders
 }
 
-participant Member identified by memberId {
-  o String memberId  //memberID
+participant User identified by email {
+  o String email  //memberID
   o String firstName
   o String lastName
-  o Address address optional
-  o String[] posts  optional//hashcode array
-  o Integer token  //writer's total asset 
+  o Address address 
+  o Double token  //writer's total asset 
+}
+
+transaction Forward {
+  o String token
+  o String postKey
 }

@@ -1,23 +1,23 @@
 /**
  * New query file
  */
-query selectAllMembers {
-  description: "Select all Member"
+query selectAllParticipants {
+  description: "Select all Participants"
   statement:
-      SELECT org.acme.model.Member
+      SELECT org.acme.model.User
 }
 
-query selectMemberByMemberID {
+query selectParticipantById {
   description:"Select a member by email"
   statement:
-      SELECT org.acme.model.Member
-          WHERE (memberId == _$memberId)
+      SELECT org.acme.model.User
+          WHERE (email == _$email)
 }
 
 query selectPostsByMemberID {
   description:"Select all posts wroten by the member"
   statement:
       SELECT org.acme.model.Post
-          WHERE (owner.memberId == _$memverId)
+          WHERE (owner.email == _$email)
 }
 
