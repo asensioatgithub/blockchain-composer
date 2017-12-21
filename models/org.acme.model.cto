@@ -1,48 +1,19 @@
 /**
- * New model file
-token */
+ * Write your model definitions here
+ */
 
 namespace org.acme.model
 
-concept Address {
-    o String country
-    o String city
-    o String county
-    o String street
-    o String house
-    o String zip
+participant User identified by email {
+  o String email
 }
 
-asset Post identified by postKey {
-  o String postKey  //file hashcode
-  o Double value    //the worth per post
-  o DateTime postTimestamp  //发布时间,"2017-08-07T15:04:33.790Z"
-  --> Member owner 
-  o String[] investor
-  o String[] authorized
+asset SampleAsset identified by assetId {
+  o String assetId
+  o String value
 }
 
-participant Member identified by memberId {
-  o String memberId  //memberID
-  o String firstName
-  o String lastName
-  o Address address optional
-  o String[] posts  optional//hashcode array
-  o Double token  //writer's total asset 
+transaction ChangeAssetValue {
+  o String newValue
+  --> Asset relatedAsset
 }
-
-transaction Subscribe {
-  --> Post post
-}
-
-abstract transaction MemberTransaction {
-    o String memberId    
-}
-
-transaction AuthorizeAccess extends MemberTransaction {
-}
-
-transaction RevokeAccess extends MemberTransaction {
-}
-
-
