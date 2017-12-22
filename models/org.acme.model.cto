@@ -6,13 +6,6 @@ namespace org.acme.model
 
 
 
-concept PostDNA {
-    o String owner //email
-    o DateTime postTimestamp  //"2017-08-07T15:04:33.790Z"
-}
-
-
-
 concept Address {
     o String university
     o String school
@@ -25,21 +18,30 @@ participant User identified by email {
   o String firstName
   o String lastName
   o Address address 
-  o Double token  optional//writer's total asset 
+  o Double token  //writer's total asset 
+  --> Post[] invest optional
+  --> Post[] reprint optional
 }
 asset Post identified by postKey {
   o String postKey  //file hashcode
-  o Integer value   optional //the worth of the post
+  o Integer value  //the worth of the post
   o String category //post's category
-  o PostDNA postDNA
-  o String[] keywords
-  o String[] forwarders optional//a set of eamil with forwarders
+  o DateTime postTimestamp
+  --> User owner
+  --> User[] investors optional//users who forward
+  --> User[] reprinters optional//users who star
 }
 
 abstract transaction abstractTransaction {
-    --> Post post
+  	--> User currentParticipant
+    --> Post currentPost
 }
 
+
+
+transaction Invest extends abstractTransaction {
+  
+}
 transaction Reprint extends abstractTransaction {
   
 }

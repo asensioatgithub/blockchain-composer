@@ -1,23 +1,24 @@
 /**
  * New query file
  */
-query selectAllParticipants {
-  description: "Select all Participants"
-  statement:
-      SELECT org.acme.model.User
-}
 
-query selectParticipantById {
-  description:"Select a member by email"
-  statement:
-      SELECT org.acme.model.User
-          WHERE (email == _$email)
-}
 
-query selectPostsByMemberID {
-  description:"Select all posts wroten by the member"
+query selectPostsByUser {
+  description:"Select all posts wroten by the User"
   statement:
       SELECT org.acme.model.Post
           WHERE (owner.email == _$email)
 }
+
+query selectPostsByCategory {
+  description:"Select all posts what belongs to this Category"
+  statement:
+      SELECT org.acme.model.Post
+          WHERE (category == _$category)
+}
+
+
+
+
+
 
