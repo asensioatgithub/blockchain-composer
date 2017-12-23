@@ -25,7 +25,7 @@ participant User identified by email {
 }
 asset Post identified by postKey {
   o String postKey  //file hashcode
-  o Integer value  //the worth of the post
+  o Double value  //the worth of the post
   o String category //post's category
   o DateTime postTimestamp
   --> User owner
