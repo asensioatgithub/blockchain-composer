@@ -4,10 +4,10 @@
 
 
 query selectPostsByUser {
-  description:"Select all posts wroten by the User"
+  description:"Select all posts wroten by the UserId"
   statement:
       SELECT org.acme.model.Post
-          WHERE (owner.email == _$email)
+          WHERE (owner == _$owner)
 }
 
 query selectPostsByCategory {
@@ -15,8 +15,22 @@ query selectPostsByCategory {
   statement:
       SELECT org.acme.model.Post
           WHERE (category == _$category)
+            
 }
 
+// query selectUsersWithHighQuantity {
+//   description: "Select Users based on token"
+//   statement:
+//       SELECT org.acme.model.User
+//           WHERE (token >0)
+//             ORDER BY lastName ASC
+// }
+query selectUsersWithHighQuantity {
+  description: "Select Users based on token"
+  statement:
+      SELECT org.acme.model.User
+          WHERE (token >10)
+}
 
 
 

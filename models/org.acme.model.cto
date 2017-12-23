@@ -19,8 +19,9 @@ participant User identified by email {
   o String lastName
   o Address address 
   o Double token  //writer's total asset 
-  --> Post[] invest optional
+  --> Post[] reward optional
   --> Post[] reprint optional
+
 }
 asset Post identified by postKey {
   o String postKey  //file hashcode
@@ -28,20 +29,21 @@ asset Post identified by postKey {
   o String category //post's category
   o DateTime postTimestamp
   --> User owner
-  --> User[] investors optional//users who forward
+  --> User[] rewarders optional//users who forward
   --> User[] reprinters optional//users who star
+
 }
 
 abstract transaction abstractTransaction {
   	--> User currentParticipant
     --> Post currentPost
+
 }
 
 
-
-transaction Invest extends abstractTransaction {
+transaction Reprint extends abstractTransaction {
   
 }
-transaction Reprint extends abstractTransaction {
+transaction Reward extends abstractTransaction {
   
 }
