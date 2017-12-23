@@ -9,6 +9,12 @@
      action: ALLOW
  }
 
-
+ rule AllAccess1 {
+     description: "AllAccess - grant everything to everybody."
+     participant: "ANY"
+     operation: ALL
+     resource: "org.acme.model.**"
+     action: ALLOW
+ }
 
 
